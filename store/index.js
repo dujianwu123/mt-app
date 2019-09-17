@@ -18,6 +18,14 @@ const store = () => new Vuex.Store({
       // 菜单列表
       const {status:statusMenu,data:{menu}}=await app.$axios.get('geo/menu');
       commit('home/setMenu',statusMenu === 200 ? menu : []);
+
+      // 热门推荐
+      const {status:status3,data:{result}}=await app.$axios.get('/search/hotPlace',{
+        params:{
+          city:app.store.state.geo.position.city.replace('市','')
+        }
+      })
+      commit('home/setHotPlace',status3===200?result:[])
     }
   }
 })
