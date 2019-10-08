@@ -47,6 +47,7 @@ export default {
     };
   },
   watch:{
+    // 当省份的被选择有变化的时候，去联动获取市的数据存储在this.city中
     pvalue:async function(newPvalue){
       let self=this;
       let {status,data:{city}}=await self.$axios.get(`/geo/province/${newPvalue}`)
@@ -94,6 +95,7 @@ export default {
       }else{
         let {status,data:{city}}=await self.$axios.get('/geo/city')
         if(status===200){
+          // 因为数据里有省的数据，所以过滤下只要市的数据
           city=city.filter((item)=>{
             return item.name.substr(item.name.length-1,item.name.length) === '市'
           })

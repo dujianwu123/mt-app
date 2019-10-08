@@ -15,7 +15,7 @@ const store = () => new Vuex.Store({
       let Cookies ={};
       if (req.headers.cookie != null) {
         req.headers.cookie.split(';').forEach(l => {
-          var parts = l.split('=');
+          let parts = l.split('=');
           Cookies[parts[0].trim()] = (parts[1] || '').trim();
         });
       }

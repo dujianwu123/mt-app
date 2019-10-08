@@ -1,6 +1,8 @@
 <template>
   <div class="slide">
-    <el-carousel height="240px">
+    <el-carousel 
+      trigger="click" 
+      height="240px">
       <el-carousel-item 
         v-for="item in list" 
         :key="item.img">
