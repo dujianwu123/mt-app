@@ -25,14 +25,18 @@
             <dt>热门搜索</dt>
             <dd 
               v-for="(item, index) in $store.state.home.hotPlace.slice(0,5)" 
-              :key="index">{{ item.name }}</dd>
+              :key="index">
+              <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
+            </dd>
           </dl>
           <dl
             v-if="isSearchList" 
             class="searchList">
             <dd 
               v-for="(item, index) in searchList" 
-              :key="index">{{ item.name }}</dd>
+              :key="index">
+              <a :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
+            </dd>
           </dl>
         </div>
         <p class="suggest">
