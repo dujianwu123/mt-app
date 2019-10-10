@@ -42,7 +42,6 @@ export default {
   methods: {
     createCart: async function () {
       let self = this;
-      console.log(self.meta.biz_ext.cost);
       let {
         status,
         data: {

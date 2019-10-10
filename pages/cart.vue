@@ -45,15 +45,25 @@ export default {
     }
   },
   methods: {
-    submit() {
-
+    submit: async function () {
+      let {status,data:{code, id}}  = await this.$axios.post('/order/createOrder', {
+        params: {
+          id: this.cartNo,
+          count: this.cart[0].count,
+          price: this.cart[0].price
+        }
+      })
+      if (status === 200 && code === 0) {
+        window.location = `/order?id=${id}`
+      } else {
+        console.log('error');
+      }
     }
   },
   async asyncData(ctx){
     let {status,data:{code,data:{name,price}}}=await ctx.$axios.post('/cart/getCart',{
       id:ctx.query.id
     });
-    console.log(name,price);
     if(status===200&&code===0&&name){
       return {
         cart:[{
