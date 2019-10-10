@@ -13,16 +13,16 @@
     <el-table-column
       label="数量"
       width="212">
-      <template slot-scope="scope">
+      <template v-slot:default="slotProps">
         <el-input-number
-          v-model="scope.row.count"
+          v-model="slotProps.row.count"
           :min="0"/>
       </template>
     </el-table-column>
     <el-table-column label="总价">
-      <template slot-scope="scope">
+      <template v-slot:default="slotProps">
         <div class="">
-          {{ scope.row.price*scope.row.count }}
+          {{ slotProps.row.price*slotProps.row.count }}
         </div>
       </template>
     </el-table-column>
@@ -31,18 +31,13 @@
 
 <script>
 export default {
-  data () {
-    return {
-      cartData: [{
-        name: '王小虎',
-        price: 10,
-        count: 1
-      }]
+  props: {
+    cartData: {
+      type: Array,
+      default: () => {
+        return []
+      }
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>
